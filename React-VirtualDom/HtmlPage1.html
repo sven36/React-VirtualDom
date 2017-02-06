@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="http://www.w3school.com.cn/jquery/jquery.js"></script>
+    <script type="text/javascript" src="Scripts/react.js"></script>
+   <script type="text/javascript" src="Scripts/react-dom.js"></script>
+     <title></title>
+</head>
+<body>
+    233~
+    <div id="container"> props.children.slice(0)</div>Object.preventExtensions  _mountOrder = nextMountID++;
+</body>
+</html>
+<script type="text/javascript">
+    function hello() {
+        alert("hello");
+    }
+    debugger
+    var eleChildren = React.createElement('p', {id:'reactChild'},'look~');
+    var ele = React.createElement('div', { id: 'text', onClick: hello },eleChildren);
+    ReactDOM.render(ele, document.getElementById("container"));
+
+    var ss = {
+        //ReactElement的唯一标识
+        $$typeof: Symbol(react.element),
+        _owner: null,
+        //唯一标识
+        key: undefined,
+        //属性
+        props: {
+            children: {
+                $$typeof: Symbol(react.element),
+                _owner: null,
+                key: undefined,
+                props: {
+                    children: "look~",
+                    id: "reactChild"
+                },
+                ref: undefined,
+                type: "p"
+            },
+            id: "text",
+            //指向hello方法的指针
+            onclick:"hello"
+        },
+        //对DOM的引用
+        ref: undefined,
+        //标签类型
+        type: "div"
+    }
+
+   /* function ReactElement(type, key, props) {
+        this.type = type;
+        this.key = key;
+        this.props = props;
+    }
+
+    function ReactDOMTextComponent(element) {
+        this._currentElement = element;
+        this._rootNodeID = null;
+    }
+    ReactDOMTextComponent.prototype.mountComponet = function (rootID) {
+        this._rootNodeID = rootID;
+        var props = this._currentElement.props;
+        var tagOpen = '<' + this._currentElement.type;
+        var tagClose = '</' + this._currentElement.type + '>';
+        tagOpen += 'data-reactid=' + this._rootNodeID;
+        for(var prop in props)
+        {
+            if(/^on[A-Za-z]/.test(prop)){
+                var eventType = prop.replace('on', '');
+                $(document).delegate('[data-reactid=' + this._rootNodeID + ']', eventType + '.' + this._rootNodeID, props[prop]);
+            }
+            if (props[prop] && prop != 'children' && !/^on[A-Za-z]/.test(prop)) {
+                tagOpen += ' ' + prop + '=' + props[prop];
+            }
+        }
+        var content = '';
+        var children = props.children || [];
+        var childrenInstances = [];
+        var that = this;
+        $.each(children,function(key,child){
+            var childComponentInstance = instantiateReactComponent(child);
+            childComponentInstance._mountIndex = key;
+            childrenInstances.push(childComponentInstance);
+            var curRootId = that._rootNodeID + '.' + key;
+            var childMarkup = childComponentInstance.mountComponet(curRootId);
+            content += ' ' + childMarkup;
+        })
+        this._renderedChildren = childrenInstances;
+        return tagOpen + '>' + content + tagClose;
+    }
+    function instantiateReactComponent(node) {
+        if (typeof node === 'string' || typeof node === 'number') {
+            return new ReactDOMTextComponent(node);
+        }
+        if (typeof node === 'object' && typeof node.type === 'string') {
+            return new ReactDOMTextComponent(node);
+        }
+    }
+    React = {
+        nextReactRoorIndex: 0,
+        createElement: function (type,config,children) {
+            var props = {} ,propName;
+            var config = config || {};
+            var key = config.key || null;
+            for (propName in config) {
+                if (config.hasOwnProperty(propName) && propName !== 'key') {
+                    props[propName] = config[propName];
+                }
+            }
+            var childrenLength = arguments.length - 2;
+            if (childrenLength === 1) {
+                props.children = Object.prototype.toString.call(children) === '[object Array]' ? children : [children];
+            }
+            else if(childrenLength>1){
+                var childArray = Array(childrenLength);
+                for (var i = 0; i < childrenLength; i++) {
+                    childArray[i] = arguments[i + 2];
+                }
+                props.children = childArray;
+            }
+            return new ReactElement(type, key, props);
+        }
+        ,
+        render: function (element, container) {
+            var componentInstance = instantiateReactComponent(element);
+            var makeup = componentInstance.mountComponet(React.nextReactRoorIndex++);
+            document.getElementById("container").innerHTML = element;
+
+        }
+    }
+    function hello(){
+        alert("hello");
+    }
+    var ele = React.createElement('div', { id: 'text', onclick: hello }, 'click me');
+    React.render(ele, document.getElementById("container"));*/
+
+</script>
+<!--<script>
+    var Observer = (function () {
+        var mes = [];
+        return {
+            regist: function (type, fn) {
+                if (typeof mes[type] === 'undefined') {
+                    mes[type] = fn;
+                }
+                else {
+                    mes[type].push(fn);
+                }
+            },
+            fire: function (type, args) {
+                if (!mes[type])
+                    return;
+                var events = {
+                    type: type,
+                    args: args || {}
+                },
+                i = 0,
+                len = mes[type].length;
+                for (; i < len; i++) {
+                    mes[type].call(this, events);
+                }
+            },
+            remove: function (type, fn) {
+                if (mes[type] instanceof Array) {
+                    var i = mes[type].length - 1;
+                    for (; i >= 0; i--) {
+                        mes[type][i] === fn && mes[type].splice(i, 1);
+                    }
+                }
+            }
+        }
+    })();
+    var ts = function (e) {
+        console.log(e.type, e.args.msg);
+    };
+    Observer.regist('test', ts);
+    Observer.regist('test2', function (e) {
+        console.log(e.type, e.args.msg);
+    });
+
+    Observer.fire('test', { msg: 'args' });
+    Observer.remove('test', ts);
+</script>-->
